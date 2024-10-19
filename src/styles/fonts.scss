@@ -130,15 +130,8 @@
 // Phonk font definitions
 // ---------- ---------- ---------- ---------- ---------- ---------- //
 @font-face {
-  font-family: "Phonk-contrast";
-  src: url("/src/assets/fonts/Phonk-contrast.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Phonk-regular";
-  src: url("/src/assets/fonts/Phonk-regular.otf") format("opentype");
+  font-family: "Phonk";
+  src: url("/src/assets/fonts/Phonk.ttf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
@@ -146,5 +139,5 @@
 // Apply fonts
 // ---------- ---------- ---------- ---------- ---------- ---------- //
 body {
-  font-family: "Geist", "Fira Sans", sans-serif;
+  font-family: "Geist", sans-serif;
 }
