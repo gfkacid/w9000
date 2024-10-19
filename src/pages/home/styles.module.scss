@@ -5,3 +5,34 @@
   position: relative;
   background-color: #0f172a;
 }
+
+.hero {
+  margin-top: 52px;
+  margin-bottom: 32px;
+  color: #eef2ff;
+  position: relative;
+  font-family: "Phonk";
+
+  & > h2:first-child {
+    font-size: 28px;
+    line-height: 36px;
+
+    & > span {
+        display: block;
+    }
+  }
+
+  & > h2:last-child {
+    font-size: 58px;
+    -webkit-text-stroke: 1px #EEF2FF;
+    color: transparent;
+    position: absolute;
+    top: 38%;
+    right: 6%;
+    transform: translateY(-50%);
+  }
+}
+
+.searchInput {
+  width: 100%;
+}

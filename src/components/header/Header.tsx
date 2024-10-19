@@ -6,11 +6,11 @@ import {
 } from "@dynamic-labs/sdk-react-core";
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
 import { isEmpty } from "lodash";
-import clsx from "clsx";
 
 import { IconLogin, IconUSDC } from "@/components/icons";
 import { TOTAL_BALANCE } from "@/constants";
 import styles from "./styles.module.scss";
+import { cn } from "@/lib/utils";
 
 const avatarUrl = new URL("/assets/avatar.png", import.meta.url).href;
 
@@ -44,7 +44,7 @@ export const Header = () => {
         </div>
       </div>
       <div className={styles.login}>
-        <div className={clsx(isLoggedIn && styles.widget)}>
+        <div className={cn(isLoggedIn && styles.widget)}>
           <DynamicWagmiConnector>
             <DynamicWidget
               variant="dropdown"
