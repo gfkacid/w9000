@@ -1,0 +1,150 @@
+// Geist font definitions
+// ---------- ---------- ---------- ---------- ---------- ---------- //
+@font-face {
+  font-family: "Geist";
+  src: url("/src/assets/fonts/Geist-Black.otf") format("opentype");
+  font-weight: 900; /* Black */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/src/assets/fonts/Geist-ExtraBold.otf") format("opentype");
+  font-weight: 800; /* ExtraBold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/src/assets/fonts/Geist-Bold.otf") format("opentype");
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/src/assets/fonts/Geist-SemiBold.otf") format("opentype");
+  font-weight: 600; /* SemiBold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/src/assets/fonts/Geist-Medium.otf") format("opentype");
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/src/assets/fonts/Geist-Regular.otf") format("opentype");
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/src/assets/fonts/Geist-Light.otf") format("opentype");
+  font-weight: 300; /* Light */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/src/assets/fonts/Geist-ExtraLight.otf") format("opentype");
+  font-weight: 200; /* ExtraLight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/src/assets/fonts/Geist-Thin.otf") format("opentype");
+  font-weight: 100; /* Thin */
+  font-style: normal;
+}
+
+// GeistMono Font Definitions
+@font-face {
+  font-family: "GeistMono";
+  src: url("/src/assets/fonts/GeistMono-Black.otf") format("opentype");
+  font-weight: 900; /* Black */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src: url("/src/assets/fonts/GeistMono-UltraBlack.otf") format("opentype");
+  font-weight: 950; /* UltraBlack */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src: url("/src/assets/fonts/GeistMono-Bold.otf") format("opentype");
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src: url("/src/assets/fonts/GeistMono-SemiBold.otf") format("opentype");
+  font-weight: 600; /* SemiBold */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src: url("/src/assets/fonts/GeistMono-Medium.otf") format("opentype");
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src: url("/src/assets/fonts/GeistMono-Regular.otf") format("opentype");
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src: url("/src/assets/fonts/GeistMono-Light.otf") format("opentype");
+  font-weight: 300; /* Light */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src: url("/src/assets/fonts/GeistMono-UltraLight.otf") format("opentype");
+  font-weight: 200; /* UltraLight */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "GeistMono";
+  src: url("/src/assets/fonts/GeistMono-Thin.otf") format("opentype");
+  font-weight: 100; /* Thin */
+  font-style: normal;
+}
+
+// Phonk font definitions
+// ---------- ---------- ---------- ---------- ---------- ---------- //
+@font-face {
+  font-family: "Phonk-contrast";
+  src: url("/src/assets/fonts/Phonk-contrast.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Phonk-regular";
+  src: url("/src/assets/fonts/Phonk-regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+// Apply fonts
+// ---------- ---------- ---------- ---------- ---------- ---------- //
+body {
+  font-family: "Geist", "Fira Sans", sans-serif;
+}
