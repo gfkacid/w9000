@@ -39,10 +39,14 @@ export const Header = () => {
     }
   }, [primaryWallet]);
 
-  const getUSDCBalance = async () => {
+  const getUSDCBalanceUnified = async () => {
+    const balanceFuji = await getUSDCBalanceFuji();
+    const balanceL1 = await getUSDCBalanceL1();
+    // return formatUnits((balanceFuji + balanceL1), USDC_DECIMALS);
+  };
+
+  const getUSDCBalanceFuji = async () => {
     if (!primaryWallet) return;
-    // const walletClient = await primaryWallet?.getWalletClient();
-    // console.log(walletClient);
 
     const publicClient = await primaryWallet?.getPublicClient();
     console.log(publicClient);
@@ -61,13 +65,18 @@ export const Header = () => {
     }
   };
 
+  const getUSDCBalanceL1 = async () => {
+    // use `useTokens` hook to fetch native balance from L1
+    
+  }
+
   React.useEffect(() => {
     (async () => {
       try {
-        const balance = await getUSDCBalance();
+        const balance = await getUSDCBalanceFuji();
         console.log({ mstatus: "balance", balance, primaryWallet });
       } catch (err) {
-        console.log("Error occured when fetching getUSDCBalance");
+        console.log("Error occured when fetching getUSDCBalanceFuji");
       }
     })();
   }, [primaryWallet]);
