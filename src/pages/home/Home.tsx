@@ -1,4 +1,5 @@
-import { Header, SearchInput } from "@/components";
+import { Card, Header, SearchInput } from "@/components";
+import { NFT_LIST } from "@/constants";
 import styles from "./styles.module.scss";
 
 const Home = () => {
@@ -14,6 +15,11 @@ const Home = () => {
       </div>
       <div>
         <SearchInput className={styles.searchInput} />
+      </div>
+      <div className={styles.nftList}>
+        {NFT_LIST.map((nft, index) => (
+          <Card key={index} {...nft} />
+        ))}
       </div>
     </div>
   );

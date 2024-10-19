@@ -7,10 +7,10 @@ import {
 import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
 import { isEmpty } from "lodash";
 
-import { IconLogin, IconUSDC } from "@/components/icons";
+import { IconLogin, IconUSDC, IconUSDCBlue } from "@/components/icons";
 import { TOTAL_BALANCE } from "@/constants";
 import styles from "./styles.module.scss";
-import { cn } from "@/lib/utils";
+import { cn, formatPrice } from "@/lib/utils";
 
 const avatarUrl = new URL("/assets/avatar.png", import.meta.url).href;
 
@@ -36,11 +36,9 @@ export const Header = () => {
   return (
     <div className={styles.header}>
       <div className={styles.balanceContainer}>
-        <div className={styles.tokenContainer}>
-          <IconUSDC />
-        </div>
+        <IconUSDCBlue />
         <div className={styles.funds}>
-          <p>{isLoggedIn ? TOTAL_BALANCE : "—"}</p>
+          <p>{isLoggedIn ? formatPrice(TOTAL_BALANCE) : "—"}</p>
         </div>
       </div>
       <div className={styles.login}>
