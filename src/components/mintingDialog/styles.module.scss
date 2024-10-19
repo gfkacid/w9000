@@ -1,0 +1,91 @@
+.dialog {
+  width: 85%;
+  background-color: #3730a366;
+  backdrop-filter: blur(10px);
+  border: none;
+  border-radius: 30px;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .title {
+    font-family: "Phonk";
+    color: #a5b4fc;
+    letter-spacing: 0;
+    margin-bottom: 24px !important;
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid #818cf8;
+    border-style: dashed;
+  }
+
+  .description {
+    margin-top: 24px !important;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    & > span {
+      width: 12px;
+      height: 12px;
+      background-color: transparent;
+      border: 1px solid #818cf8;
+      border-radius: 50%;
+      margin-right: 24px;
+      position: relative;
+      transition: all 275ms ease-in-out;
+    }
+
+    & > span.withConnector::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-40%);
+      width: 1px;
+      height: 18px;
+      border-right: 1px dashed #818cf8;
+      transition: all 275ms ease-in-out;
+    }
+
+    & > p {
+      color: #a5b4fc;
+      transition: all 275ms ease-in-out;
+    }
+  }
+
+  .step.completedStep {
+    & > span {
+      background-color: #fff;
+      border: 1px solid #fff;
+    }
+
+    & > span.withConnector::after {
+      border-right: 1px solid #fff;
+    }
+
+    & > p {
+      color: #fff;
+    }
+  }
+
+  .step.activeStep {
+    & > span {
+      border: 1px solid #fff;
+    }
+
+    & > p {
+      color: #fff;
+    }
+  }
+}

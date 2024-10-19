@@ -79,6 +79,7 @@ export const Header = () => {
         console.log("Error occured when fetching getUSDCBalanceFuji");
       }
     })();
+    // eslint-disable-next-line
   }, [primaryWallet]);
 
   return (
@@ -102,7 +103,7 @@ export const Header = () => {
           <div className={styles.accountInfo}>
             <p>{primaryWallet?.address?.substring(0, 6)}...</p>
             <button onClick={() => accountBtnRef.current?.click()}>
-              <img src={avatarUrl} />
+              <img src={avatarUrl} alt="avatar" />
             </button>
           </div>
         )}

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Card, Header, SearchInput } from "@/components";
+import { Card, Header, MintingDialog, SearchInput } from "@/components";
 import { NFT_LIST } from "@/constants";
 import styles from "./styles.module.scss";
 
@@ -20,7 +20,7 @@ const Home = () => {
       <div>
         <SearchInput className={styles.searchInput} />
       </div>
-      {/* <MintingDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} /> */}
+      <MintingDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} />
       <div className={styles.nftList}>
         {NFT_LIST.map((nftArgs, index) => (
           <Card
