@@ -12,4 +12,9 @@ export default defineConfig({
       scss: { api: "modern-compiler", importers: [] },
     },
   },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 });

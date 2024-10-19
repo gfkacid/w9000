@@ -8,8 +8,8 @@ import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
 import { isEmpty } from "lodash";
 import clsx from "clsx";
 
-import { IconLogin, IconUSDC } from "../icons";
-import { TOTAL_BALANCE } from "../../constants";
+import { IconLogin, IconUSDC } from "@/components/icons";
+import { TOTAL_BALANCE } from "@/constants";
 import styles from "./styles.module.scss";
 
 const avatarUrl = new URL("/assets/avatar.png", import.meta.url).href;

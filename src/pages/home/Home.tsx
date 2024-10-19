@@ -1,5 +1,5 @@
+import { Header } from "@/components";
 import styles from "./styles.module.scss";
-import { Header } from "../../components";
 
 const Home = () => {
   return (

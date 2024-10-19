@@ -3,9 +3,9 @@ import { WagmiProvider } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 
-import { wagmiConfig, evmNetworks } from "./constants";
+import { wagmiConfig, evmNetworks } from "@/constants";
 import { Route, Routes } from "react-router-dom";
-import { Home } from "./pages";
+import { Home } from "@/pages";
 
 const queryClient = new QueryClient();
 
