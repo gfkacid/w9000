@@ -1,9 +1,19 @@
 /* to remove everything in this file later */
-import { CardProps } from "@/components";
-
 export const TOTAL_BALANCE = 9420.69;
+export const USDC_DECIMALS = 6;
+export const TESTNET_USDC_ADDRESS =
+  "0x5425890298aed601595a70AB815c96711a31Bc65";
 
-export const NFT_LIST: CardProps[] = [
+export interface NftArgs {
+  title: string;
+  usdcPrice: number;
+  owned: boolean;
+  isFavorite?: boolean;
+  imgUrl: string;
+  colorTheme?: "light" | "dark";
+}
+
+export const NFT_LIST: NftArgs[] = [
   {
     title: "Landscapes of the third world",
     usdcPrice: 420,

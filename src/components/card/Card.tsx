@@ -1,24 +1,21 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import { IconArrowUpRight, IconHeart, IconUSDC, IconUSDCBlue } from "../icons";
+import { IconArrowUpRight, IconHeart, IconUSDCBlue } from "../icons";
 import { formatPrice } from "@/lib/utils";
+import { NftArgs } from "@/constants";
 
-export interface CardProps {
-  title: string;
-  usdcPrice: number;
-  owned: boolean;
-  isFavorite?: boolean;
-  imgUrl: string;
-  colorTheme?: "light" | "dark";
+export interface CardProps extends NftArgs {
+  onMint: () => void;
 }
 
 export const Card: React.FC<CardProps> = ({
   title,
   usdcPrice,
-  owned,
-  isFavorite = false,
+  // owned,
+  // isFavorite = false,
   imgUrl,
   colorTheme = "light",
+  onMint,
 }) => {
   const bgColor = colorTheme === "light" ? "#0f172a" : "#fff";
   const txtColor = colorTheme === "light" ? "#fff" : "#0f172a";
@@ -41,7 +38,7 @@ export const Card: React.FC<CardProps> = ({
             <span>Current price</span>
           </div>
         </div>
-        <button className={styles.cta}>
+        <button className={styles.cta} onClick={onMint}>
           <span>Mint</span>
           <IconArrowUpRight />
         </button>
