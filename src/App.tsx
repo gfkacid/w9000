@@ -1,51 +1,19 @@
-import {
-  DynamicContextProvider,
-  DynamicWidget,
-} from "@dynamic-labs/sdk-react-core";
-import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
-import {
-  createConfig,
-  WagmiProvider,
-} from 'wagmi';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { http } from 'viem';
-import { avalancheFuji } from 'viem/chains';
-
+import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
+import { WagmiProvider } from "wagmi";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
 
-const config = createConfig({
-  chains: [avalancheFuji],
-  multiInjectedProviderDiscovery: false,
-  transports: {
-    [avalancheFuji.id]: http(),
-  },
-});
+import { wagmiConfig, evmNetworks } from "./constants";
+import { Route, Routes } from "react-router-dom";
+import { Home } from "./pages";
 
-const evmNetworks = [
-  {
-    blockExplorerUrls: ["https://testnet.snowtrace.io/"],
-    chainId: 43113,
-    chainName: "Avalanche Fuji",
-    iconUrls: ["https://app.dynamic.xyz/assets/networks/avax.svg"],
-    name: "Avalanche Fuji",
-    nativeCurrency: {
-      decimals: 18,
-      name: "Avax",
-      symbol: "AVAX",
-    },
-    networkId: 43113,
-    rpcUrls: ["https://api.avax-test.network/ext/bc/C/rpc"],
-    vanityName: "Avalanche Fuji",
-  },
-];
-  
 const queryClient = new QueryClient();
-  
-export default function App() {
+
+const App = () => {
   return (
     <DynamicContextProvider
       settings={{
-        environmentId: process.env.VITE_DYNAMIC_ENVIRONMENT_ID,
+        environmentId: import.meta.env.VITE_DYNAMIC_ENVIRONMENT_ID ?? "",
         overrides: { evmNetworks },
         walletConnectors: [EthereumWalletConnectors],
         recommendedWallets: [
@@ -56,13 +24,15 @@ export default function App() {
         ],
       }}
     >
-      <WagmiProvider config={config}>
+      <WagmiProvider config={wagmiConfig}>
         <QueryClientProvider client={queryClient}>
-          <DynamicWagmiConnector>
-            <DynamicWidget />
-          </DynamicWagmiConnector>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+          </Routes>
         </QueryClientProvider>
-      </WagmiProvider> 
+      </WagmiProvider>
     </DynamicContextProvider>
   );
 };
+
+export default App;
