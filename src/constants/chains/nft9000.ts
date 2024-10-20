@@ -14,12 +14,6 @@ export const nft9000 = defineChain({
       http: ["https://subnets.avax.network/quickbronz/testnet/rpc"],
     },
   },
-  //   blockExplorers: {
-  //     default: {
-  //       name: "Explorer",
-  //       url: "https://subnets-test.avax.network/echo",
-  //     },
-  //   },
   iconUrl: "/assets/chains/logos/45770.png",
-  //   icm_registry: "0xF86Cb19Ad8405AEFa7d09C778215D2Cb6eBfB228",
+  icm_registry: "0xE329B5Ff445E4976821FdCa99D6897EC43891A6c",
 });

@@ -8,15 +8,9 @@ import { DynamicWagmiConnector } from "@dynamic-labs/wagmi-connector";
 import { isEmpty } from "lodash";
 
 import { IconLogin, IconUSDCBlue } from "@/components/icons";
-import {
-  TESTNET_USDC_ADDRESS,
-  TOTAL_BALANCE,
-  USDC_ABI,
-  USDC_DECIMALS,
-} from "@/constants";
+import { useBalance } from "@/hooks";
 import styles from "./styles.module.scss";
 import { cn, formatPrice } from "@/lib/utils";
-import { formatUnits } from "viem";
 
 const avatarUrl = new URL("/assets/avatar.png", import.meta.url).href;
 
@@ -24,6 +18,7 @@ export const Header = () => {
   const isLoggedIn = useIsLoggedIn();
   const { primaryWallet } = useDynamicContext();
   const accountBtnRef = React.useRef<HTMLButtonElement | null>(null);
+  const { totalBalance } = useBalance();
 
   // Mask/customize DynamicWidget-Settings button when Logged-in
   React.useEffect(() => {
@@ -39,55 +34,12 @@ export const Header = () => {
     }
   }, [primaryWallet]);
 
-  const getUSDCBalanceUnified = async () => {
-    const balanceFuji = await getUSDCBalanceFuji();
-    const balanceL1 = await getUSDCBalanceL1();
-    // return formatUnits((balanceFuji + balanceL1), USDC_DECIMALS);
-  };
-
-  const getUSDCBalanceFuji = async () => {
-    if (!primaryWallet) return;
-
-    const publicClient = await primaryWallet?.getPublicClient();
-    console.log(publicClient);
-
-    try {
-      const balance = await publicClient.readContract({
-        address: TESTNET_USDC_ADDRESS,
-        abi: USDC_ABI,
-        functionName: "balanceOf",
-        args: [primaryWallet.address],
-      });
-      console.log(balance);
-      return formatUnits(balance, USDC_DECIMALS);
-    } catch (error) {
-      console.error("Error fetching balance:", error);
-    }
-  };
-
-  const getUSDCBalanceL1 = async () => {
-    // use `useTokens` hook to fetch native balance from L1
-    
-  }
-
-  React.useEffect(() => {
-    (async () => {
-      try {
-        const balance = await getUSDCBalanceFuji();
-        console.log({ mstatus: "balance", balance, primaryWallet });
-      } catch (err) {
-        console.log("Error occured when fetching getUSDCBalanceFuji");
-      }
-    })();
-    // eslint-disable-next-line
-  }, [primaryWallet]);
-
   return (
     <div className={styles.header}>
       <div className={styles.balanceContainer}>
         <IconUSDCBlue />
         <div className={styles.funds}>
-          <p>{isLoggedIn ? formatPrice(TOTAL_BALANCE) : "—"}</p>
+          <p>{isLoggedIn ? formatPrice(totalBalance) : "—"}</p>
         </div>
       </div>
       <div className={styles.login}>
