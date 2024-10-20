@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 interface MintingDialogProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onSuccess: () => void;
 }
 
 const steps = [
@@ -25,22 +26,24 @@ const steps = [
 export const MintingDialog: React.FC<MintingDialogProps> = ({
   isOpen,
   setIsOpen,
+  onSuccess,
 }) => {
   const [activeStep, setActiveStep] = React.useState<number>(2);
 
   React.useEffect(() => {
-    if (
-      !isOpen ||
-      steps.length === 0 ||
-      activeStep === steps[steps.length - 1].id + 1
-    )
-      return;
+    if (!isOpen || steps.length === 0) return;
+    if (activeStep === steps[steps.length - 1].id + 1) {
+      setIsOpen(false);
+      onSuccess();
+    }
 
     const interval = setInterval(() => {
       setActiveStep((prev) => prev + 1);
     }, 1000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+    };
     // eslint-disable-next-line
   }, [steps, activeStep, isOpen]);
 

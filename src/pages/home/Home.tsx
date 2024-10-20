@@ -1,11 +1,13 @@
 import React from "react";
 
 import { Card, Header, MintingDialog, SearchInput } from "@/components";
-import { NFT_LIST } from "@/constants";
 import styles from "./styles.module.scss";
+import { ClientContext } from "@/context";
 
 const Home = () => {
   const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const [nftInProcess, setNftInProcess] = React.useState<number | null>(null);
+  const { context, updateContext } = React.useContext(ClientContext);
 
   return (
     <div className={styles.main}>
@@ -20,19 +22,30 @@ const Home = () => {
       <div>
         <SearchInput className={styles.searchInput} />
       </div>
-      <MintingDialog isOpen={isDialogOpen} setIsOpen={setIsDialogOpen} />
       <div className={styles.nftList}>
-        {NFT_LIST.map((nftArgs, index) => (
+        {context.nftList.map((nftArgs, index) => (
           <Card
             key={index}
             {...nftArgs}
             onMint={() => {
-              console.log({ mstatus: "onMint", nftArgs });
+              setNftInProcess(nftArgs.id);
               setIsDialogOpen(true);
             }}
           />
         ))}
       </div>
+      <MintingDialog
+        isOpen={isDialogOpen}
+        setIsOpen={setIsDialogOpen}
+        onSuccess={() => {
+          updateContext({
+            ...context,
+            nftList: context.nftList.map((nft) =>
+              nft.id === nftInProcess ? { ...nft, owned: true } : nft
+            ),
+          });
+        }}
+      />
     </div>
   );
 };

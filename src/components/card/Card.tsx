@@ -1,7 +1,12 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import { IconArrowUpRight, IconHeart, IconUSDCBlue } from "../icons";
-import { formatPrice } from "@/lib/utils";
+import {
+  IconArrowUpRight,
+  IconCheckBadge,
+  IconHeart,
+  IconUSDCBlue,
+} from "../icons";
+import { cn, formatPrice } from "@/lib/utils";
 import { NftArgs } from "@/constants";
 
 export interface CardProps extends NftArgs {
@@ -11,17 +16,26 @@ export interface CardProps extends NftArgs {
 export const Card: React.FC<CardProps> = ({
   title,
   usdcPrice,
-  // owned,
+  owned,
   // isFavorite = false,
   imgUrl,
   colorTheme = "light",
   onMint,
 }) => {
-  const bgColor = colorTheme === "light" ? "#0f172a" : "#fff";
-  const txtColor = colorTheme === "light" ? "#fff" : "#0f172a";
+  let bgColor = colorTheme === "light" ? "#0f172a" : "#fff";
+  let txtColor = colorTheme === "light" ? "#fff" : "#0f172a";
+
+  if (owned) {
+    bgColor = "#6366F180";
+    txtColor = "#fff";
+  }
 
   return (
-    <div className={styles.card}>
+    <div
+      className={cn(styles.card, {
+        [styles.cardOwned]: owned,
+      })}
+    >
       <div className={styles.header}>
         <span style={{ backgroundColor: bgColor, color: txtColor }}>
           <p>{title}</p>
@@ -30,20 +44,27 @@ export const Card: React.FC<CardProps> = ({
           <IconHeart strokeColor={txtColor} />
         </button>
       </div>
-      <div className={styles.footer}>
-        <div className={styles.priceContainer}>
-          <IconUSDCBlue containerSize={38} iconSize={22} />
-          <div className={styles.priceInfo}>
-            <span>{formatPrice(usdcPrice)}</span>
-            <span>Current price</span>
+      {!owned ? (
+        <div className={styles.footer}>
+          <div className={styles.priceContainer}>
+            <IconUSDCBlue containerSize={38} iconSize={22} />
+            <div className={styles.priceInfo}>
+              <span>{formatPrice(usdcPrice)}</span>
+              <span>Current price</span>
+            </div>
           </div>
+          <button className={styles.cta} onClick={onMint}>
+            <span>Mint</span>
+            <IconArrowUpRight />
+          </button>
         </div>
-        <button className={styles.cta} onClick={onMint}>
-          <span>Mint</span>
-          <IconArrowUpRight />
-        </button>
-      </div>
-      <img src={imgUrl} />
+      ) : (
+        <div className={styles.footerOwned}>
+          <span>Owned</span>
+          <IconCheckBadge />
+        </div>
+      )}
+      <img src={imgUrl} alt="NFT art" />
     </div>
   );
 };
