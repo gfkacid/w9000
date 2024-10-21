@@ -40,15 +40,33 @@ export const useBalance = () => {
     }
   };
 
+
   React.useEffect(() => {
     (async () => {
-      try {
-        const [balanceFuji, balanceL1] = await getUSDCBalance();
-        setFujiBalance(Number(balanceFuji));
-        setNft9000Balance(Number(balanceL1));
-      } catch (err) {
-        console.error("Error on getUSDCBalance()", err);
-      }
+      const fetchData = async () => {
+        if (isEmpty(primaryWallet)) return;
+        try {
+          const [balanceFuji, balanceL1] = await getUSDCBalance();
+          setFujiBalance(Number(balanceFuji));
+          setNft9000Balance(Number(balanceL1));
+          console.log({
+            mstatus: "fetched new balance.",
+            primaryWallet,
+            balanceFuji,
+            balanceL1,
+            totalBalance: Number(balanceFuji) + Number(balanceL1),
+          });
+        } catch (err) {
+          console.error("Error on getUSDCBalance()", err);
+        }
+      };
+
+      const intervalId = setInterval(() => {
+        fetchData();
+      }, 5000);
+
+      // Cleanup interval on component unmount
+      return () => clearInterval(intervalId);
     })();
     // eslint-disable-next-line
   }, [primaryWallet]);
